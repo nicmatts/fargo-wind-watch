@@ -7,8 +7,11 @@ $(document).ready(function($) {
     var wind_dir = parsed_json['current_observation']['wind_dir'];
     var wind_mph = parsed_json['current_observation']['wind_mph'];
     //don't need this one, but may use it later
-    //var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
-  
+    var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
+    console.log("Wind: " + wind_mph);
+    console.log("Direction: " + wind_dir);
+    console.log("Gust:" + wind_gust_mph);
+
     //display wind speed 
     if (wind_mph > 0){
       $(".wind").text(wind_mph);
@@ -38,6 +41,7 @@ $(document).ready(function($) {
     //change text depending on wind speed
     if (wind_mph === 0){
       $(".wind-text").text("There's no wind!");
+      $('.wind').css({background: 'url(img/no-wind.png)'});
     } else if (wind_mph > 0 && wind_mph < 8){
       $(".wind-text").text("The wind is calm.");
     } else if (wind_mph >=8 && wind_mph < 13){

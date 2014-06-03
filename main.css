@@ -43,7 +43,7 @@ h1 {
 	left: 70px;
 }
 
-.wind-text {
+.wind-text, .wind-error {
 	position: absolute;
 	top: -20px;
 	text-align: center;
