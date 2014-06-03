@@ -54,8 +54,10 @@ $(document).ready(function($) {
       $(".wind-error").text("Data is temporarily unavailable.");
     }
      // add wind data text if wind mph is available   
-    if (wind_mph > 0){
+    if (wind_mph > 0 && wind_mph != "Variable"){
       $(".wind-data").text("Wind is out of the " + wind_dir + " at " + wind_mph + ".");
+    } else {
+      $(".wind-data").text("Wind is variable at " + wind_mph + ".");
     }
   }
   });
