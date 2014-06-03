@@ -1,0 +1,51 @@
+html { 
+  background: url(sky.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	font-family: 'Merriweather', serif;
+	font-size: 150%;
+}
+
+h1 {
+	text-align: center;
+}
+
+.wind-container {
+	height: 340px;
+	width: 400px;
+	margin: 3em auto;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+.wind-data {
+	font-size: 0.75em;
+	position: absolute;
+	top: 320px;
+	text-align: center;
+	width: 400px;
+}
+
+.wind {
+	width: 260px;
+	height: 260px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 7.5em;
+	vertical-align: middle;
+	position: absolute;
+	top: 24px;
+	left: 70px;
+}
+
+.wind-text {
+	position: absolute;
+	top: -20px;
+	text-align: center;
+	width: 400px;
+}
