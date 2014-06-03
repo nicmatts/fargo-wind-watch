@@ -9,8 +9,10 @@ $(document).ready(function($) {
     //don't need this one, but may use it later
     //var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
   
-    //display wind speed   
-    $(".wind").text(wind_mph);
+    //display wind speed 
+    if (wind_mph > 0){
+      $(".wind").text(wind_mph);
+    }
 
     //change wind speed background depending on direction of wind
     if (wind_dir == "N" || wind_dir == "North"){
@@ -48,7 +50,7 @@ $(document).ready(function($) {
       $(".wind-text").text("You could fly a kite in this.");
     } else if (wind_mph >=24 && wind_mph < 30){
       $(".wind-text").text("Uff da, it's windy out.");
-    } else if (wind_mph >=30){
+    } else if (wind_mph >=30 && wind_mph <100){
       $(".wind-text").text("Watch out for flying debris!");
     } else {
       $(".wind-error").text("Data is temporarily unavailable.");
@@ -56,8 +58,10 @@ $(document).ready(function($) {
      // add wind data text if wind mph is available   
     if (wind_mph > 0 && wind_mph != "Variable"){
       $(".wind-data").text("Wind is out of the " + wind_dir + " at " + wind_mph + ".");
-    } else {
+    } else if (wind_mph == "Variable") {
       $(".wind-data").text("Wind is variable at " + wind_mph + ".");
+    } else {
+      $(".wind-data").text("Check back in a few minutes.");
     }
   }
   });
