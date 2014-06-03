@@ -13,21 +13,21 @@ $(document).ready(function($) {
     $(".wind").text(wind_mph);
 
     //change wind speed background depending on direction of wind
-    if (wind_dir == "N"){
+    if (wind_dir == "N" || wind_dir == "North"){
       $('.wind').css({background: 'url(img/north.png)'});
     } else if (wind_dir == "NW" || wind_dir == "NNW" || wind_dir == "WNW"){
       $('.wind').css({background: 'url(img/nw.png)'});
     } else if (wind_dir == "NE" || wind_dir == "NNE" || wind_dir == "ENE"){
       $('.wind').css({background: 'url(img/ne.png)'});
-    } else if (wind_dir == "E"){
+    } else if (wind_dir == "E" || wind_dir == "East"){
       $('.wind').css({background: 'url(img/east.png)'});
     } else if (wind_dir == "SE" || wind_dir == "SSE" || wind_dir == "ESE"){
       $('.wind').css({background: 'url(img/se.png)'});
-    } else if (wind_dir == "S"){
+    } else if (wind_dir == "S" || wind_dir == "South"){
       $('.wind').css({background: 'url(img/south.png)'});
     } else if (wind_dir == "SW" || wind_dir == "SSW" || wind_dir == "WSW"){
       $('.wind').css({background: 'url(img/sw.png)'});
-    } else if (wind_dir == "W"){
+    } else if (wind_dir == "W" || wind_dir == "West"){
       $('.wind').css({background: 'url(img/west.png)'});
     } else {
       $('.wind').css({background: 'url(img/no-wind.png)'});
