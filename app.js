@@ -1,6 +1,3 @@
-var wind_dir;
-var wind_mph;
-
 $(document).ready(function($) {
   $.ajax({
     url : "http://api.wunderground.com/api/58d1555600ee8ced/geolookup/conditions/q/ND/Fargo.json",
@@ -21,10 +18,10 @@ $(document).ready(function($) {
   });
 });
 
-//display wind speet
+//display wind speed
 var windSpeed = function(wind_mph){
   if (wind_mph >= 0){
-    $(".wind").text(wind_mph);
+    $(".wind").append("<div class='wind-mph'>" + wind_mph + "</div");
   }
 };
 

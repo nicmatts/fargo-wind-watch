@@ -43,6 +43,11 @@ h1 {
 	left: 70px;
 }
 
+.wind-mph {
+	position: relative;
+	top: 20px;
+}
+
 .wind-text, .wind-error {
 	position: absolute;
 	top: -20px;
