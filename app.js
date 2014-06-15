@@ -7,13 +7,16 @@ $(document).ready(function($) {
       wind_mph = parsed_json['current_observation']['wind_mph'];
       //don't need this one, but may use it later
       var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
+      var observation_time = parsed_json['current_observation']['observation_time'];
       console.log("Wind: " + wind_mph);
       console.log("Direction: " + wind_dir);
       console.log("Gust:" + wind_gust_mph);
+      console.log("last updated: " + observation_time);
       windSpeed(wind_mph);
       windDirection(wind_dir);
       windInfo(wind_mph);
       windText(wind_mph);
+      observationTime(observation_time);
     }
   });
 });
@@ -82,6 +85,10 @@ var windText =  function(wind_mph){
   } else {
     $(".wind-data").text("Check back in a few minutes.");
   }
+};
+
+var observationTime = function(observation_time){
+  $(".wind-data").append("<p class='observation-time'>" + observation_time + "</p>");
 };
 
 

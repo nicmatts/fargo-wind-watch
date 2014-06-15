@@ -54,3 +54,7 @@ h1 {
 	text-align: center;
 	width: 400px;
 }
+
+.observation-time {
+	font-size: smaller;
+}
