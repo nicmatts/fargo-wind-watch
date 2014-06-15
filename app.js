@@ -1,23 +1,36 @@
+var wind_dir;
+var wind_mph;
 
 $(document).ready(function($) {
   $.ajax({
     url : "http://api.wunderground.com/api/58d1555600ee8ced/geolookup/conditions/q/ND/Fargo.json",
     dataType : "jsonp",
     success : function(parsed_json) {
-    var wind_dir = parsed_json['current_observation']['wind_dir'];
-    var wind_mph = parsed_json['current_observation']['wind_mph'];
-    //don't need this one, but may use it later
-    var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
-    console.log("Wind: " + wind_mph);
-    console.log("Direction: " + wind_dir);
-    console.log("Gust:" + wind_gust_mph);
-
-    //display wind speed 
-    if (wind_mph > 0){
-      $(".wind").text(wind_mph);
+      wind_dir = parsed_json['current_observation']['wind_dir'];
+      wind_mph = parsed_json['current_observation']['wind_mph'];
+      //don't need this one, but may use it later
+      var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
+      console.log("Wind: " + wind_mph);
+      console.log("Direction: " + wind_dir);
+      console.log("Gust:" + wind_gust_mph);
+      windSpeed(wind_mph);
+      windDirection(wind_dir);
+      windInfo(wind_mph);
+      windText(wind_mph);
     }
+  });
+});
 
-    //change wind speed background depending on direction of wind
+//display wind speet
+var windSpeed = function(wind_mph){
+  if (wind_mph >= 0){
+    $(".wind").text(wind_mph);
+  }
+};
+
+
+//change wind speed background depending on direction of wind
+var windDirection = function(wind_dir){
     if (wind_dir == "N" || wind_dir == "North"){
       $('.wind').css({background: 'url(img/north.png)'});
     } else if (wind_dir == "NW" || wind_dir == "NNW" || wind_dir == "WNW"){
@@ -37,8 +50,10 @@ $(document).ready(function($) {
     } else {
       $('.wind').css({background: 'url(img/no-wind.png)'});
     }
+};
 
-    //change text depending on wind speed
+//change text depending on wind speed
+var windInfo = function(wind_mph) {
     if (wind_mph === 0){
       $(".wind-text").text("There's no wind!");
       $('.wind').css({background: 'url(img/no-wind.png)'});
@@ -59,15 +74,17 @@ $(document).ready(function($) {
     } else {
       $(".wind-error").text("Data is temporarily unavailable.");
     }
-     // add wind data text if wind mph is available   
-    if (wind_mph > 0 && wind_mph != "Variable"){
-      $(".wind-data").text("Wind is out of the " + wind_dir + " at " + wind_mph + ".");
-    } else if (wind_mph == "Variable") {
-      $(".wind-data").text("Wind is variable at " + wind_mph + ".");
-    } else {
-      $(".wind-data").text("Check back in a few minutes.");
-    }
+  };
+
+// add wind data text if wind mph is available   
+var windText =  function(wind_mph){
+ if (wind_mph > 0 && wind_mph != "Variable"){
+    $(".wind-data").text("Wind is out of the " + wind_dir + " at " + wind_mph + ".");
+  } else if (wind_mph == "Variable") {
+    $(".wind-data").text("Wind is variable at " + wind_mph + ".");
+  } else {
+    $(".wind-data").text("Check back in a few minutes.");
   }
-  });
-});
+};
+
 
