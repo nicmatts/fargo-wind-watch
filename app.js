@@ -11,16 +11,18 @@ $(document).ready(function($) {
       var windchill = parsed_json['current_observation']['windchill_f'];
       windchill = parseInt(windchill, 10);
       var temp = parsed_json['current_observation']['temp_f'];
+
       windSpeed(wind_mph);
       windDirection(wind_dir);
       windInfo(wind_mph);
       windText(wind_mph);
       windchillText(windchill);
       observationTime(observation_time);
+
       console.log("Wind: " + wind_mph);
       console.log(windchill);
       console.log(temp);
-      console.log(typeof(windchill));
+      console.log(typeof(temp));
       // console.log("Direction: " + wind_dir);
       // console.log("Gust:" + wind_gust_mph);
       // console.log("last updated: " + observation_time);
@@ -96,11 +98,16 @@ var windText =  function(wind_mph){
 
 // add windchill data if available
 var windchillText =  function(windchill){
- if (windchill){
-    console.log("good so far");
+ if (windchill >= 10 && windchill < 30){
     $(".wind-data").prepend("<h2>The windchill is " + windchill + ".</h2>");
+  } else if (windchill >= -20 && windchill < 10){
+    $(".wind-data").prepend("<h2>The windchill is " + windchill + ".  Brr!</h2>");
+  } else if (windchill < -20){
+    $(".wind-data").prepend("<h2>The windchill is " + windchill + ".  <br>Stay inside!</h2>");
+  } else if (windchill >= 30 || !windchill){
+    return true;
   } else {
-    $(".wind-data").prepend("No windchill data available.");
+    $(".wind-data").append("<p>No windchill data available.</p>");
   }
 };
 
