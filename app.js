@@ -8,15 +8,22 @@ $(document).ready(function($) {
       //don't need this one, but may use it later
       var wind_gust_mph = parsed_json['current_observation']['wind_gust_mph'];
       var observation_time = parsed_json['current_observation']['observation_time'];
-      // console.log("Wind: " + wind_mph);
-      // console.log("Direction: " + wind_dir);
-      // console.log("Gust:" + wind_gust_mph);
-      // console.log("last updated: " + observation_time);
+      var windchill = parsed_json['current_observation']['windchill_f'];
+      windchill = parseInt(windchill, 10);
+      var temp = parsed_json['current_observation']['temp_f'];
       windSpeed(wind_mph);
       windDirection(wind_dir);
       windInfo(wind_mph);
       windText(wind_mph);
+      windchillText(windchill);
       observationTime(observation_time);
+      console.log("Wind: " + wind_mph);
+      console.log(windchill);
+      console.log(temp);
+      console.log(typeof(windchill));
+      // console.log("Direction: " + wind_dir);
+      // console.log("Gust:" + wind_gust_mph);
+      // console.log("last updated: " + observation_time);
     }
   });
 });
@@ -84,6 +91,16 @@ var windText =  function(wind_mph){
     $(".wind-data").text("Wind is variable at " + wind_mph + ".");
   } else {
     $(".wind-data").text("Check back in a few minutes.");
+  }
+};
+
+// add windchill data if available
+var windchillText =  function(windchill){
+ if (windchill){
+    console.log("good so far");
+    $(".wind-data").prepend("<h2>The windchill is " + windchill + ".</h2>");
+  } else {
+    $(".wind-data").prepend("No windchill data available.");
   }
 };
 
